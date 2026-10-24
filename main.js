@@ -63,7 +63,27 @@
 
   // Mapa de cobertura incrustado (permite animar las rutas)
   const mapCard = document.getElementById('map-card');
-  if (mapCard && window.IBERIA_SVG) mapCard.innerHTML = window.IBERIA_SVG;
+  if (mapCard && window.IBERIA_SVG) {
+    mapCard.innerHTML = window.IBERIA_SVG;
+    // Resaltar una ruta al pasar por un destino del mapa o por un chip de tiempos
+    const highlight = (city, on) => {
+      mapCard.classList.toggle('dim', on);
+      mapCard.querySelectorAll('[data-city]').forEach((el) => el.classList.toggle('hl', on && el.dataset.city === city));
+    };
+    const bind = (el, city) => {
+      el.addEventListener('mouseenter', () => highlight(city, true));
+      el.addEventListener('mouseleave', () => highlight(city, false));
+      el.addEventListener('focus', () => highlight(city, true));
+      el.addEventListener('blur', () => highlight(city, false));
+    };
+    mapCard.querySelectorAll('.city').forEach((el) => bind(el, el.dataset.city));
+    document.querySelectorAll('.times li').forEach((li) => {
+      const city = li.querySelector('span')?.textContent.trim();
+      if (!city) return;
+      li.tabIndex = 0;
+      bind(li, city);
+    });
+  }
 
   // Botón volver arriba
   const toTop = document.querySelector('.to-top');
