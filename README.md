@@ -2,6 +2,12 @@
 
 Propuesta de web moderna para sustituir la actual (Google Sites). Es un sitio estático sin dependencias: se abre con doble clic en `index.html` y se puede alojar en cualquier servidor o servicio de páginas estáticas.
 
+## Publicación (24/10/2026)
+- **Enlace para enviar:** https://cye-studio.github.io/perez-rangel-web/
+- Alojada en GitHub Pages desde el repositorio público `CyE-Studio/perez-rangel-web`, que contiene solo esta carpeta (no la demo de gestión). Esta carpeta es un repositorio git propio; `capturas/` y el PDF no se suben (`.gitignore`).
+- Para actualizarla: hacer los cambios aquí, `git add -A && git commit -m "..." && git push` desde `web/`. Pages vuelve a publicar en uno o dos minutos.
+- Es una vista previa de propuesta, no la web definitiva: el repositorio es público (requisito de Pages gratuito), así que las fotografías con matrículas y los certificados están accesibles en internet. Si la empresa lo prefiere, se puede pasar a privado o retirar en cualquier momento. Cuando se publique en su dominio, cambiar las URL absolutas de `og:image` y `og:url` en `index.html`.
+
 ## Diseño (versión fotográfica, 23/10/2026)
 Referencias del sector: DSV, Primafrio, XPO y Transportes Fuentes comparten fotografía a sangre, titulares grandes, bandas de cifras, ritmo oscuro/claro y una llamada a la acción fija. Esta propuesta sigue ese patrón con la identidad de Pérez Rangel:
 - **Portada** a pantalla completa con tres fotografías reales de la flota en fundido lento (atardecer en la base, MAN en el bosque, Mercedes) y zoom suave; titular con el eslogan en tipografía Outfit; cabecera transparente que se vuelve blanca y se oculta al bajar.
