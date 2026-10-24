@@ -158,25 +158,37 @@
 
   // Contadores
   const counters = document.querySelectorAll('[data-count]');
-  const fmt = (n) => n.toLocaleString('es-ES');
+  const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // 5000 → 5.000 (el navegador no agrupa cifras de cuatro dígitos en español)
+  // La unidad (m²) va en un <small> para que no rompa la línea ni compita con la cifra.
+  const paint = (el, n) => {
+    const unit = el.dataset.suffix ? ' <small>' + el.dataset.suffix.trim() + '</small>' : '';
+    el.innerHTML = (el.dataset.prefix || '') + fmt(n) + unit;
+  };
   const animate = (el) => {
     const target = parseInt(el.dataset.count, 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    if (reduce) { el.textContent = prefix + fmt(target) + suffix; return; }
-    const t0 = performance.now();
-    const step = (t) => {
-      const p = Math.min(1, (t - t0) / 1500);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = prefix + fmt(Math.round(target * eased)) + suffix;
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+    if (reduce) { paint(el, target); return; }
+    // Arranca cuando la tarjeta ya ha terminado de aparecer (misma escalera de retardos que .reveal)
+    const card = el.closest('.reveal');
+    const delay = card ? parseFloat(getComputedStyle(card).transitionDelay) * 1000 + 350 : 0;
+    // Empieza en un 60 % del valor: el recorrido es corto y no se ven ceros ni saltos largos
+    const from = Math.round(target * 0.6);
+    setTimeout(() => {
+      const t0 = performance.now();
+      const step = (t) => {
+        const p = Math.min(1, (t - t0) / 1100);
+        const eased = 1 - Math.pow(1 - p, 3);
+        paint(el, Math.round(from + (target - from) * eased));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay);
   };
+  // Valor inicial coherente (prefijo y unidad ya colocados) para que no haya cambio de anchura brusco
+  counters.forEach((el) => paint(el, reduce ? parseInt(el.dataset.count, 10) : Math.round(parseInt(el.dataset.count, 10) * 0.6)));
   if ('IntersectionObserver' in window) {
     const io2 = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); }
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
     counters.forEach((el) => io2.observe(el));
   } else {
     counters.forEach(animate);
