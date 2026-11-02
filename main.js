@@ -7,13 +7,8 @@
   const header = document.querySelector('.site-header');
   const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
   const sections = navLinks.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  let lastY = 0;
   const onScroll = () => {
     const y = window.scrollY;
-    header.classList.toggle('solid', y > 60);
-    header.classList.toggle('hide', y > 400 && y > lastY + 4);
-    if (y < lastY - 4) header.classList.remove('hide');
-    lastY = y;
     let current = null;
     for (const s of sections) if (s.offsetTop <= y + 140) current = s.id;
     navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
@@ -29,7 +24,6 @@
     burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     mobileNav.classList.toggle('open', open);
-    header.classList.remove('hide');
   });
   mobileNav.querySelectorAll('a').forEach((a) =>
     a.addEventListener('click', () => {
@@ -95,16 +89,6 @@
     const upd = () => { const max = document.documentElement.scrollHeight - window.innerHeight; progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%'; };
     window.addEventListener('scroll', upd, { passive: true });
     upd();
-  }
-
-  // Portada reactiva al ratón (desplazamiento sutil de la fotografía)
-  const heroSlides = document.querySelector('.hero-slides');
-  if (heroSlides && !reduce && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelector('.hero').addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * -14;
-      const y = (e.clientY / window.innerHeight - 0.5) * -10;
-      heroSlides.style.transform = 'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, 0)';
-    });
   }
 
   // Lightbox para galería, nave y certificados

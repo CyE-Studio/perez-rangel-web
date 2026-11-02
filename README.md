@@ -8,7 +8,16 @@ Propuesta de web moderna para sustituir la actual (Google Sites). Es un sitio es
 - Para actualizarla: hacer los cambios aquí, `git add -A && git commit -m "..." && git push` desde `web/`. Pages vuelve a publicar en uno o dos minutos.
 - Es una vista previa de propuesta, no la web definitiva: el repositorio es público (requisito de Pages gratuito), así que las fotografías con matrículas y los certificados están accesibles en internet. Si la empresa lo prefiere, se puede pasar a privado o retirar en cualquier momento. Cuando se publique en su dominio, cambiar las URL absolutas de `og:image` y `og:url` en `index.html`.
 
-## Diseño (versión fotográfica, 23/10/2026)
+## Diseño actual: «ficha técnica» (02/11/2026)
+Rediseño a petición del cliente interno tomando como referencia el estilo de la demo de Nyos Consulting de C&E Studio, con los colores de Pérez Rangel:
+- **Papel y retícula**: fondo crudo (`#f6f5f0`) con cuadrícula fina en la portada y en las fotos de servicios; marcas «+» en las esquinas de fichas y formularios; sin esquinas redondeadas ni sombras; todo separado por líneas de 1 px.
+- **Tipografía**: Host Grotesk para texto y titulares (peso 500, interletrado cerrado) y Geist Mono para datos, etiquetas y pies de foto, cargadas desde Google Fonts (Inter empaquetada como reserva).
+- **Portada**: titular a la izquierda y una «ficha» a la derecha con tres pestañas (base logística, nevada, MAN TGX), la fotografía y una tabla de datos en monoespaciada. Sin fundido automático agresivo: cambia al pulsar la pestaña (y cada 7 s).
+- **Secciones numeradas** 01–08 con columna de margen a la izquierda, alternando papel y azul marino: servicios (fichas con foto y pie numerado), flota (galería con borde y tabla de especificaciones), cobertura (mapa en ficha con nota), cómo trabajamos (tres pasos con columna «Recibes» y la cita), empresa, certificaciones, empleo y contacto (oscuro, formulario con etiquetas en monoespaciada).
+- **Pie** en rejilla de cuatro columnas con borde: empresa, servicios, navegación y contacto; CIF, teléfono y horario marcados «Por confirmar».
+- Se eliminan la marquesina, las bandas con parallax y la banda de la cita sobre foto; el lightbox, el mapa interactivo, los contadores, la barra de progreso y la barra de acciones móvil se mantienen.
+
+## Diseño anterior (versión fotográfica, 23/10/2026)
 Referencias del sector: DSV, Primafrio, XPO y Transportes Fuentes comparten fotografía a sangre, titulares grandes, bandas de cifras, ritmo oscuro/claro y una llamada a la acción fija. Esta propuesta sigue ese patrón con la identidad de Pérez Rangel:
 - **Portada** a pantalla completa con tres fotografías reales de la flota en fundido lento (atardecer en la base, MAN en el bosque, Mercedes) y zoom suave; titular con el eslogan en tipografía Outfit; cabecera transparente que se vuelve blanca y se oculta al bajar.
 - **Marquesina** roja con los servicios y **cifras** grandes con contador.
