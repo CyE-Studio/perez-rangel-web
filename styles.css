@@ -70,9 +70,9 @@ p { margin: 0; }
 /* Hero */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; background: var(--navy); color: #fff; padding: 160px 0 90px; isolation: isolate; }
 .hero-slides { position: absolute; inset: 0; z-index: -2; }
-.slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; transform: scale(1.06); }
+.slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; transform: scale(1.02); backface-visibility: hidden; }
 .slide.is-active { opacity: 1; animation: kenburns 9s ease-out forwards; }
-@keyframes kenburns { from { transform: scale(1.06); } to { transform: scale(1.14); } }
+@keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.07); } }
 .hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7, 11, 31, 0.86) 0%, rgba(7, 11, 31, 0.55) 45%, rgba(7, 11, 31, 0.15) 100%), linear-gradient(0deg, rgba(7, 11, 31, 0.85) 0%, transparent 45%); }
 .hero-content { position: relative; max-width: 820px; }
 .eyebrow { font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--red); margin-bottom: 18px; }
